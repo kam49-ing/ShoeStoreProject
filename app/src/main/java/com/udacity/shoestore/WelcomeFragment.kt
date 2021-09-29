@@ -6,21 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import com.udacity.shoestore.databinding.FragmentLoginBinding
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.udacity.shoestore.databinding.FragmentWelcomeBinding
+import kotlinx.android.synthetic.main.fragment_login.view.*
+
 
 class WelcomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentWelcomeBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
+        val binding: FragmentWelcomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
+        binding.navigationButton.setOnClickListener{view:View->
+            view.findNavController().navigate(R.id.action_welcomeFragment_to_instructionFragment)
+        }
         return binding.root
     }
+
 
 
 }

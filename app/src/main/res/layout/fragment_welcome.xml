@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".WelcomeFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="371dp"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".WelcomeFragment">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/welcome_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/dice_5" />
+
+        <ImageView
+            android:id="@+id/shoe_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="@+id/welcome_image"
+            app:srcCompat="@drawable/dice_1"
+            tools:layout_editor_absoluteY="278dp" />
+
+        <ImageView
+            android:id="@+id/shoes1_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/shoe_image"
+            app:layout_constraintEnd_toEndOf="@+id/welcome_image"
+            app:layout_constraintStart_toEndOf="@+id/shoe_image"
+            app:srcCompat="@drawable/dice_2" />
+
+        <TextView
+            android:id="@+id/shoe_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/shoe_description"
+            app:layout_constraintEnd_toEndOf="@+id/shoe_image"
+            app:layout_constraintStart_toStartOf="@+id/shoe_image"
+            app:layout_constraintTop_toBottomOf="@+id/shoe_image" />
+
+        <TextView
+            android:id="@+id/shoe1_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/shoe1_description"
+            app:layout_constraintEnd_toEndOf="@+id/shoes1_image"
+            app:layout_constraintStart_toEndOf="@+id/shoe_image"
+            app:layout_constraintTop_toTopOf="@+id/shoe_description" />
+
+        <Button
+            android:id="@+id/navigation_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="navigate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/shoe1_description"
+            app:layout_constraintStart_toStartOf="@+id/shoe_description"
+            app:layout_constraintTop_toBottomOf="@+id/shoe_description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

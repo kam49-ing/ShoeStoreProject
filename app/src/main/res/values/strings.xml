@@ -8,4 +8,9 @@
     <string name="password_edit_hint">Enter your password please</string>
     <string name="login">Login</string>
     <string name="create_account">Create an account</string>
+    <string name="welcome_message">Welcome to the shoestore app. We\'re glad to help you shopping</string>
+    <string name="shoe_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="shoe1_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua.</string>
 </resources>
