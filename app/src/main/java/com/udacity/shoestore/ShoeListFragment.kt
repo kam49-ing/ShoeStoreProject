@@ -2,17 +2,16 @@ package com.udacity.shoestore
 
 import ShoeViewModel
 import android.os.Bundle
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
-import kotlinx.coroutines.NonDisposableHandle.parent
 
 
 class ShoeListFragment : Fragment() {
@@ -21,7 +20,11 @@ class ShoeListFragment : Fragment() {
 
 
 
-
+    /*
+    *when the view is created, we adds shoes we have in our "database"
+    * and create a floating action button
+    * that we will add to our layout
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,23 +33,90 @@ class ShoeListFragment : Fragment() {
 
         binding = FragmentShoeListBinding.inflate(inflater, container, false)
         shoeViewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
-        displayShoe()
+        shoeViewModel.browseShoes()
+        binding.sebago.text = "name: "+shoeViewModel.shoe.value?.name+" \nPrice: "+shoeViewModel.shoe.value?.price+"\nDescription: "+shoeViewModel.shoe.value?.description?.let {
+                getString(
+                    it.toInt())
+            }
+        shoeViewModel.browseShoes()
+        binding.nikeAir.text = "name: "+shoeViewModel.shoe.value?.name+" \nPrice: "+shoeViewModel.shoe.value?.price+"\nDescription: "+shoeViewModel.shoe.value?.description?.let {
+                getString(
+                    it.toInt())
+            }
+        shoeViewModel.browseShoes()
+        binding.jordanAir.text = "name: "+shoeViewModel.shoe.value?.name+" \nPrice: "+shoeViewModel.shoe.value?.price+"\nDescription: "+shoeViewModel.shoe.value?.description?.let {
+                getString(
+                    it.toInt())
+            }
+        shoeViewModel.browseShoes()
+        binding.dg.text = "name: "+shoeViewModel.shoe.value?.name+" \nPrice: "+shoeViewModel.shoe.value?.price+"\nDescription: "+shoeViewModel.shoe.value?.description?.let {
+                getString(
+                    it.toInt())
+            }
+        shoeViewModel.browseShoes()
+        binding.versace.text = "name: "+shoeViewModel.shoe.value?.name+" \nPrice: "+shoeViewModel.shoe.value?.price+"\nDescription: "+shoeViewModel.shoe.value?.description?.let {
+                getString(
+                    it.toInt())
+            }
+
+        var ll = binding.layout
+
+        //creates a new floating button and adds to the layout
+        var floatingActionButton = FloatingActionButton(this.requireContext())
+        floatingActionButton.setImageResource(R.drawable.ic_add)
+        floatingActionButton.id = View.generateViewId()
+
+        ll.addView(floatingActionButton)
+
+
+        floatingActionButton.setOnClickListener{view:View->
+            view.findNavController().navigate(R.id.action_shoeListFragment_to_shoeDetailFragment)
+        }
+
         return binding.root
 
     }
 
+    /*
+    *when the view is resumed, we search for new added shoes to add them in the view
+    * after setting constraints
+     */
+    override fun onResume() {
+
+        var ll = binding.layout
+        var textView = TextView(this.activity)
+        var set = ConstraintSet()
+        var constraintLayout = binding.constraintLayout
+
+        //clones the constraint set with the layout
+        set.clone(constraintLayout)
 
 
-    fun displayShoe() {
+        shoeViewModel.shoe.observe(this, { newShoe->
 
-        var newTextView = TextView(this.getActivity())
-        val parent = LinearLayout(this.activity)
+            //creates new text view
+            textView.id = View.generateViewId()
+            textView.text =
+                "name: " + newShoe.name + " \nPrice: " + newShoe?.price + "\nDescription: " + newShoe?.description?.let {
+                    getString(
+                        it.toInt()
+                    )
+                }
 
-        newTextView.width =  0
-        newTextView.height = ViewGroup.LayoutParams.WRAP_CONTENT
-        shoeViewModel.nextShoe()
-        newTextView.setText(shoeViewModel.shoe.value?.name)
-        parent.addView(newTextView)
+            //adds constraints on the new text view and applies
+            set.connect(textView.id, ConstraintSet.TOP, binding.versace.id, ConstraintSet.BOTTOM)
+            set.connect(textView.id, ConstraintSet.END, binding.layout.id, ConstraintSet.END)
+            set.connect(textView.id, ConstraintSet.START, binding.layout.id, ConstraintSet.START)
+            textView.width = 0
+            set.applyTo(constraintLayout)
+
+            //adds the text view to the layout
+            ll.addView(textView)
+
+        })
+
+        super.onResume()
     }
+
 
 }

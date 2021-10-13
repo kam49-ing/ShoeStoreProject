@@ -12,37 +12,65 @@
         android:layout_marginRight="16dp">
 
         <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/shoe1"
+                    android:id="@+id/sebago"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="TextView"
-                    app:layout_constraintBottom_toTopOf="@+id/textView4"
+                    android:text="@string/lorem_text"
+                    app:layout_constraintBottom_toTopOf="@+id/nikeAir"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/nikeAir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="TextView"
-                    app:layout_constraintEnd_toEndOf="@+id/shoe1"
-                    app:layout_constraintStart_toStartOf="@+id/shoe1"
-                    app:layout_constraintTop_toBottomOf="@+id/shoe1" />
+                    android:text="@string/lorem_text"
+                    app:layout_constraintEnd_toEndOf="@+id/sebago"
+                    app:layout_constraintStart_toStartOf="@+id/sebago"
+                    app:layout_constraintTop_toBottomOf="@+id/sebago" />
+
+                <TextView
+                    android:id="@+id/jordanAir"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/nikeAir"
+                    app:layout_constraintStart_toStartOf="@+id/nikeAir"
+                    app:layout_constraintTop_toBottomOf="@+id/nikeAir" />
+
+                <TextView
+                    android:id="@+id/dg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/versace"
+                    app:layout_constraintStart_toStartOf="@+id/versace"
+                    app:layout_constraintTop_toBottomOf="@+id/versace" />
+
+                <TextView
+                    android:id="@+id/versace"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/jordanAir"
+                    app:layout_constraintStart_toStartOf="@+id/jordanAir"
+                    app:layout_constraintTop_toBottomOf="@+id/jordanAir" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
