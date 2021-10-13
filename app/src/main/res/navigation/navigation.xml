@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/welcome">
 
     <fragment
-        android:id="@+id/loginFragment"
+        android:id="@+id/welcome"
         android:name="com.udacity.shoestore.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_welcome_to_instruction"
+            app:destination="@id/instruction" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -21,13 +24,13 @@
         tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/welcome" />
         <action
             android:id="@+id/action_welcomeFragment_to_instructionFragment"
-            app:destination="@id/instructionFragment" />
+            app:destination="@id/instruction" />
     </fragment>
     <fragment
-        android:id="@+id/instructionFragment"
+        android:id="@+id/instruction"
         android:name="com.udacity.shoestore.InstructionFragment"
         android:label="fragment_instruction"
         tools:layout="@layout/fragment_instruction" >
@@ -43,6 +46,9 @@
         <action
             android:id="@+id/action_shoeListFragment_to_shoeDetailFragment"
             app:destination="@id/shoeDetailFragment" />
+        <action
+            android:id="@+id/action_shoeListFragment_to_loginFragment"
+            app:destination="@id/welcome" />
     </fragment>
     <fragment
         android:id="@+id/shoeDetailFragment"

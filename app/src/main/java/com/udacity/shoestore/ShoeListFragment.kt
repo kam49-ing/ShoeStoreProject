@@ -2,14 +2,13 @@ package com.udacity.shoestore
 
 import ShoeViewModel
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
 
@@ -72,10 +71,31 @@ class ShoeListFragment : Fragment() {
         floatingActionButton.setOnClickListener{view:View->
             view.findNavController().navigate(R.id.action_shoeListFragment_to_shoeDetailFragment)
         }
+        setHasOptionsMenu(true)
 
         return binding.root
 
     }
+
+    fun login(){
+        view?.findNavController()?.navigate(R.id.action_shoeListFragment_to_loginFragment)
+    }
+
+
+    //adds the option menu
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.logout_menu, menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.login -> login()
+        }
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())|| super.onOptionsItemSelected(item)
+    }
+
 
     /*
     *when the view is resumed, we search for new added shoes to add them in the view

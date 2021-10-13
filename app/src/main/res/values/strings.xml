@@ -18,4 +18,5 @@ tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="instruction">Instruction</string>
     <string name="logout">logout</string>
     <string name="shoe_detail">shoe detail</string>
+    <string name="welcome">welcome</string>
 </resources>

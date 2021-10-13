@@ -28,20 +28,10 @@ class LoginFragment : Fragment() {
             val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(view?.windowToken, 0)
         }
+        this.activity?.getActionBar()?.title="Login"
 
-        //setup an option menu
-        setHasOptionsMenu(true)
         return binding.root
     }
 
-    //adds the option menu
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.logout_menu, menu)
-    }
 
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())|| super.onOptionsItemSelected(item)
-    }
 }
