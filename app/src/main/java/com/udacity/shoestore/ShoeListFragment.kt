@@ -93,7 +93,7 @@ class ShoeListFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val ll = binding.layout
+        val layout = binding.layout
         val textView = TextView(this.activity)
 
         shoeViewModel.shoe.observe(this.viewLifecycleOwner, { newShoe->
@@ -110,14 +110,14 @@ class ShoeListFragment : Fragment() {
             textView.setLayoutParams(textViewParams)
 
             //adds the text view to the layout
-            ll.addView(textView)
+            layout.addView(textView)
 
             //replaces the floating button by another
             //so that it is displayed after the last text view added
             binding.layout.removeView(binding.floatingActionButton)
             val floatingActionButton = FloatingActionButton(this.requireContext())
             floatingActionButton.id = binding.floatingActionButton.id
-            ll.addView(floatingActionButton)
+            layout.addView(floatingActionButton)
             floatingActionButton.setOnClickListener{
                 it.findNavController().navigate(R.id.action_shoeListFragment_to_shoeDetailFragment)
             }
