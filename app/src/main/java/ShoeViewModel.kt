@@ -1,3 +1,4 @@
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,13 +12,16 @@ class ShoeViewModel: ViewModel() {
         val price: String,
         val description: String
     )
+
+
     //mutable list for shoes
-    private lateinit var _shoeList : MutableList<Shoes>
+    private lateinit var _shoeList: MutableList<Shoes>
 
     //sho live data
     private var _shoe = MutableLiveData<Shoes>()
-    val shoe:LiveData<Shoes>
+    val shoe: LiveData<Shoes>
         get() = _shoe
+
 
     //initialisation
     init {
@@ -28,7 +32,7 @@ class ShoeViewModel: ViewModel() {
      *setting shoes list
      * no parameter
      */
-    private fun setShoesList(){
+    private fun setShoesList() {
         _shoeList = mutableListOf(
             Shoes("Sebago", "30$", R.string.lorem_text.toString()),
             Shoes("Nike air", "30$", R.string.lorem_text.toString()),
@@ -39,16 +43,20 @@ class ShoeViewModel: ViewModel() {
     }
 
 
-
-
     /*
     *Browsing shoes' list
     * no parameter
      */
     fun browseShoes() {
 
-        if (!_shoeList.isEmpty())
+        if (_shoeList.isNotEmpty() ) {
             _shoe.value = _shoeList.removeAt(0)
+        }
+    }
+
+    fun rearangeShoes(){
+        if (_shoeList.isNotEmpty())
+            _shoe.value = _shoeList.first()
     }
 
     /*
@@ -58,7 +66,7 @@ class ShoeViewModel: ViewModel() {
     * description: string
     * return the shoe created
      */
-    fun createShoe(name:String, price: String, description: String):Shoes{
+    fun createShoe(name: String, price: String, description: String): Shoes {
         return Shoes(name, price, description)
     }
 
@@ -72,7 +80,10 @@ class ShoeViewModel: ViewModel() {
 
         _shoeList.add(newShoe)
         _shoe.value = _shoeList.last()
+        Log.i("MainActivity", "The new shoe and the last shoe value: "+shoe.value?.name.toString())
 
     }
 
+
 }
+

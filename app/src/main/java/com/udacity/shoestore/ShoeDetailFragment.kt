@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.databinding.BaseObservable
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -20,15 +21,15 @@ class ShoeDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_detail, container, false)
 
         //calls view model
-        shoeViewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
+        shoeViewModel = ViewModelProvider(this.requireActivity())[ShoeViewModel::class.java]
 
         //adds shoe to shoes list when save button is clicked
         binding.saveButton.setOnClickListener {
-            var newShoe = shoeViewModel.createShoe(binding.nameEditText.text.toString(), binding.priceEditText.text.toString(), binding.descriptionEditText.text.toString())
+            val newShoe = shoeViewModel.createShoe(binding.nameEditText.text.toString(), binding.priceEditText.text.toString(), binding.descriptionEditText.text.toString())
 
             shoeViewModel.addShoe(newShoe)
 
