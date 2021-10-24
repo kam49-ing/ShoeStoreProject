@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+We use constraint layout because of number of views and their alignment
+which need to have some constraints so that they can be align normally in the UI
+-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="name"
+            android:text="@string/name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/price_text_view"
             app:layout_constraintHorizontal_bias="0.0"
@@ -29,11 +33,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
-            android:hint="name"
+            android:hint="@string/name"
             android:inputType="textPersonName"
             app:layout_constraintBaseline_toBaselineOf="@+id/name_text_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/name_text_view" />
+            app:layout_constraintStart_toEndOf="@+id/name_text_view"
+             />
 
         <TextView
             android:id="@+id/price_text_view"
@@ -41,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:text="price"
+            android:text="@string/price"
             app:layout_constraintEnd_toEndOf="@+id/description_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_text_view" />
@@ -52,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:ems="10"
-            android:hint="price"
+            android:hint="@string/price"
             android:inputType="textPersonName"
             app:layout_constraintBaseline_toBaselineOf="@+id/price_text_view"
             app:layout_constraintEnd_toEndOf="@+id/name_edit_text"
@@ -63,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Description"
+            android:text="@string/description"
             app:layout_constraintBottom_toBottomOf="@+id/description_edit_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/description_edit_text" />
@@ -76,7 +81,7 @@
             android:layout_marginTop="32dp"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="Description"
+            android:hint="@string/description"
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="@+id/price_edit_text"
             app:layout_constraintStart_toEndOf="@+id/description_text_view"
@@ -88,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@android:color/holo_green_light"
-            android:text="save"
+            android:text="@string/save"
             android:textColorHighlight="@android:color/holo_green_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

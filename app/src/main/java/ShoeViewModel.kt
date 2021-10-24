@@ -1,8 +1,6 @@
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.udacity.shoestore.R
 
 class ShoeViewModel: ViewModel() {
 
@@ -18,9 +16,10 @@ class ShoeViewModel: ViewModel() {
     private lateinit var _shoeList: MutableList<Shoes>
 
     //sho live data
-    private var _shoe = MutableLiveData<Shoes>()
-    val shoe: LiveData<Shoes>
-        get() = _shoe
+    private var _shoes = MutableLiveData<List<Shoes>>()
+    val shoes: LiveData<List<Shoes>>
+        get() = _shoes
+
 
 
     //initialisation
@@ -34,30 +33,24 @@ class ShoeViewModel: ViewModel() {
      */
     private fun setShoesList() {
         _shoeList = mutableListOf(
-            Shoes("Sebago", "30$", R.string.lorem_text.toString()),
-            Shoes("Nike air", "30$", R.string.lorem_text.toString()),
-            Shoes("Jordan air", "30$", R.string.lorem_text.toString()),
-            Shoes("D&G", "30$", R.string.lorem_text.toString()),
-            Shoes("Versace", "30$", R.string.lorem_text.toString())
+            Shoes("Sebago", "30$", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+            Shoes("Nike air", "30$", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+            Shoes("Jordan air", "30$", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+            Shoes("D&G", "30$", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+            Shoes("Versace", "30$", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
         )
+        _shoes.value = _shoeList
     }
 
 
     /*
-    *Browsing shoes' list
+    *initializes _shoes live data
     * no parameter
      */
-    fun browseShoes() {
-
-        if (_shoeList.isNotEmpty() ) {
-            _shoe.value = _shoeList.removeAt(0)
-        }
+    fun initialization() {
+        _shoes.value = _shoeList
     }
 
-    fun rearangeShoes(){
-        if (_shoeList.isNotEmpty())
-            _shoe.value = _shoeList.first()
-    }
 
     /*
     *Constructor for creating a new shoe instance
@@ -79,9 +72,7 @@ class ShoeViewModel: ViewModel() {
     fun addShoe(newShoe: Shoes) {
 
         _shoeList.add(newShoe)
-        _shoe.value = _shoeList.last()
-        Log.i("MainActivity", "The new shoe and the last shoe value: "+shoe.value?.name.toString())
-
+        _shoes.value = _shoeList
     }
 
 
