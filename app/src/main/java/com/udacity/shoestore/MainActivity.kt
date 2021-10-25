@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.ActivityMainBinding
 
@@ -22,9 +23,13 @@ class MainActivity : AppCompatActivity() {
         //menu configuration
         setSupportActionBar(binding.toolbar)
         drawerLayout = binding.drawerLayout
-        val navController = this.findNavController(R.id.myNavHostFragment)
 
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        val navHostFragment =  supportFragmentManager.findFragmentById(R.id.myNavHostFragment)
+        val navController = navHostFragment?.findNavController()
+
+        if (navController != null) {
+            NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

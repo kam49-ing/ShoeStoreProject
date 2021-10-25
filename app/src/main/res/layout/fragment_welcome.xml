@@ -5,14 +5,13 @@ and those views don't need a special constraint
 -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    >
 
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp">
 
             <LinearLayout
@@ -24,11 +23,11 @@ and those views don't need a special constraint
                     android:id="@+id/welcome_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@drawable/dice_5" />
+                    android:src="@drawable/dice_1"
+                    android:contentDescription="@string/welcome_image" />
 
                 <TextView
                     android:id="@+id/welcome_message_2"
