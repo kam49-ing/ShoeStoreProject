@@ -3,7 +3,6 @@ package com.udacity.shoestore
 import ShoeViewModel
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
@@ -14,13 +13,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
+import com.udacity.shoestore.models.Shoe
 
 
 class ShoeListFragment : Fragment() {
     private lateinit var binding: FragmentShoeListBinding
     private lateinit var shoeViewModel:ShoeViewModel
     private var index:Int = 0
-    private var textViewsAdded:Boolean = false
 
     /*
     *when the view is created, we adds shoes we have in our "database"
@@ -34,20 +33,24 @@ class ShoeListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         //Action to do on click of any button beside the shoe image
-        Log.i("MainActivity", "Ok")
         binding = FragmentShoeListBinding.inflate(inflater, container, false)
         shoeViewModel = ViewModelProvider(this.requireActivity())[ShoeViewModel::class.java]
+
+
+
         val layout = binding.layout
-        var textViewParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, WRAP_CONTENT)
+        val textViewParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, WRAP_CONTENT)
         val floatingActionButton = FloatingActionButton(this.requireContext())
 
-        shoeViewModel.initialization()
 
-        shoeViewModel.shoes.observe(this.viewLifecycleOwner, { newShoeList->
+        shoeViewModel.obervable.initialization()
+
+        shoeViewModel.obervable.shoes.observe(this.viewLifecycleOwner, {
+                newShoeList->
             while (newShoeList.size > index){
-                var textView = TextView(this.activity)
+                val textView = TextView(this.activity)
                 textView.id = View.generateViewId()
-                textView.text = "name: " + newShoeList[index].name + " \nPrice: " + newShoeList[index].price + "\nDescription: " + newShoeList[index].description
+                textView.text = "name: " + newShoeList[index].name + " \nSize: " + newShoeList[index].size + "\nDescription: " + newShoeList[index].description
                 textViewParams.setMargins(16, 16, 16, 16)
 
                 //adds the text view to the layout
@@ -60,7 +63,6 @@ class ShoeListFragment : Fragment() {
             floatingActionButton.setImageResource(R.drawable.ic_add)
             //tests if textviews have been added before adding the floating action button
             layout.addView(floatingActionButton)
-
 
         })
 
@@ -98,11 +100,4 @@ class ShoeListFragment : Fragment() {
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())|| super.onOptionsItemSelected(item)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val layout = binding.layout
-        val textViewParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, WRAP_CONTENT)
-
-
-        super.onViewCreated(view, savedInstanceState)
-    }
 }
