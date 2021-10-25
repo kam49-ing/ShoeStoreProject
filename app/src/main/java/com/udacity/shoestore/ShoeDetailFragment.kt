@@ -36,9 +36,8 @@ class ShoeDetailFragment : Fragment() {
 
 
         binding.saveButton.setOnClickListener {
-            val newShoe = shoeViewModel.obervable.createShoe(binding.nameEditText.text.toString(), binding.priceEditText.text.toString(), binding.descriptionEditText.text.toString())
-
-            shoeViewModel.obervable.setShoe(newShoe)
+            //saves shoe via two way data binding
+            shoeViewModel.obervable.setShoe(shoe)
 
             //closes the key board
             val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager

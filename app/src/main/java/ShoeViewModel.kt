@@ -1,13 +1,9 @@
-import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.databinding.Observable
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.udacity.shoestore.LoginFragment
-import com.udacity.shoestore.MainActivity
 import com.udacity.shoestore.models.Shoe
 
 open class ShoeViewModel: ViewModel() {
